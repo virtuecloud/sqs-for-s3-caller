@@ -1,3 +1,3 @@
 variable "bucket_name" {
-    default = "my-demo800"
+    default = "Your_bucket_name"
 }
