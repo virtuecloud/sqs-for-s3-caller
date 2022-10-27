@@ -15,7 +15,7 @@ jobs:
 #     runs-on: ubuntu-latest?
 #     steps:
     Terraform-manual-validation:
-        uses: MrGandhe/github-shared/Terraform/action.yml@main
+        uses: MrGandhe/github-shared/.github/workflows/action.yml@main
 #         with:
 #            STATEBUCKET: ${{inputs.STATEBUCKET}}
 #            Aws_access_key: ${{secrets.AWS_ACCESS_KEY_ID}}
