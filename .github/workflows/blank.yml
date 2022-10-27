@@ -11,11 +11,11 @@ on:
 #         type: string
 
 jobs:
-  build-test-scan:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Terraform manual validation
-        uses: MrGandhe/github-shared/Terraformplan/action.yml@main
+#   build-test-scan:
+#     runs-on: ubuntu-latest?
+#     steps:
+    Terraform-manual-validation:
+        uses: MrGandhe/github-shared/Terraform/action.yml@main
 #         with:
 #            STATEBUCKET: ${{inputs.STATEBUCKET}}
 #            Aws_access_key: ${{secrets.AWS_ACCESS_KEY_ID}}
