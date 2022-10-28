@@ -1,0 +1,21 @@
+name: Reusable workflow
+
+on:
+  workflow_call:
+    inputs:
+      STATEBUCKET:
+        required: true  
+      ENVIRONMENT:
+         required: true
+      REGION:
+         required: true
+jobs:
+  build-test-scan:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Terraformplan
+        uses: MrGandhe/github-shared/Terraformplan@main
+        with:
+         STATEBUCKET : ${{ inputs.STATEBUCKET }}
+         REGION : ${{ inputs.REGION }}
+         ENVIRONMENT : ${{ inputs.ENVIRONMENT }}
