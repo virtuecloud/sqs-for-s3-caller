@@ -1,30 +1,22 @@
-name: Terraform_manual_validation
+name: Reusable workflow
 
 on:
-  workflow_dispatch:
-#     inputs:
-#       STATEBUCKET:
-#         required: true
-#         type: string
-#       envi:
-#         required: true
-#         type: string
-
+  workflow_call:
+    inputs:
+ STATEBUCKET:
+    description: 'statebucket name'
+    required: true  
+  ENVIRONMENT:
+     description: 'environment name'
+     required: true
+  REGION:
+     description: 'region'
+     required: true
 jobs:
-#   build-test-scan:
-#     runs-on: ubuntu-latest?
-#     steps:
-    Terraform-manual-validation:
-        uses: MrGandhe/github-shared/.github/workflows/action.yml@main
-#         with:
-#            STATEBUCKET: ${{inputs.STATEBUCKET}}
-#            Aws_access_key: ${{secrets.AWS_ACCESS_KEY_ID}}
-#            Aws_secret_key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
-#            envi: ${{inputs.envi}}
-#       - name: manual validatation
-#         uses: trstringer/manual-approval@v1
-#         with:
-#           secret: ${{ github.TOKEN }}
-#           approvers: MrGandhe
-#           minimum-approvals: 1
-#           issue-title: "Deploying v1.3.5 to prod from staging"
+  build-test-scan:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Terraformplan
+        uses: MrGandhe/github-shared/Terraformplan@main
+        with:
+          docker_image: ${{ inputs.bucketname }}
