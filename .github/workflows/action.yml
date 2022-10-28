@@ -1,22 +1,12 @@
 name: Reusable workflow
 
 on:
-  workflow_call:
-    inputs:
-      STATEBUCKET:
-        required: true
-        option:
-         - mybucksoham-cicd
-      ENVIRONMENT:
-        required: true
-        option:
-         - test
-      REGION:
-        required: true
-        option:
-         - ap-south-1
+  workflow_dispatch:
 jobs:
   build-test-scan:
+<<<<<<< HEAD
+        uses: MrGandhe/github-shared/.github/workflows/action.yml@main
+=======
     runs-on: ubuntu-20.04
     
   call-workflow-passing-data:
@@ -27,3 +17,5 @@ jobs:
       STATEBUCKET : ${{ inputs.STATEBUCKET }}
       REGION : ${{ inputs.REGION }}
       ENVIRONMENT : ${{ inputs.ENVIRONMENT }}
+
+>>>>>>> dbeec2e5a4225fb93bbedea9acd6620e44fcd931
