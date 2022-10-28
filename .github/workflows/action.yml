@@ -5,9 +5,19 @@ on:
     inputs:
       STATEBUCKET:
         required: true
+        option:
+        - mybucksoham-cicd
       ENVIRONMENT:
         required: true
+        option:
+        - test
       REGION:
+        required: true
+        option:
+        - ap-south-1
+      aws_access_key_id:
+        required: true
+      aws_secret_access_key:
         required: true
 jobs:
   build-test-scan:
@@ -16,6 +26,8 @@ jobs:
       - name: Terraformplan
         uses: MrGandhe/github-shared/Terraformplan@main
         with:
+         aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+         aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
          STATEBUCKET : ${{ inputs.STATEBUCKET }}
          REGION : ${{ inputs.REGION }}
          ENVIRONMENT : ${{ inputs.ENVIRONMENT }}
