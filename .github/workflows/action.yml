@@ -7,4 +7,4 @@ jobs:
     runs-on: ubuntu-20.04
     steps:   
       - name: test
-        uses: MrGandhe/github-shared/TF/action.yml@main
+        uses: MrGandhe/github-shared/TF@main
