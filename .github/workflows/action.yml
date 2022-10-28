@@ -6,19 +6,15 @@ on:
       STATEBUCKET:
         required: true
         option:
-        - mybucksoham-cicd
+         - mybucksoham-cicd
       ENVIRONMENT:
         required: true
         option:
-        - test
+         - test
       REGION:
         required: true
         option:
-        - ap-south-1
-      aws_access_key_id:
-        required: true
-      aws_secret_access_key:
-        required: true
+         - ap-south-1
 jobs:
   build-test-scan:
     runs-on: ubuntu-20.04
