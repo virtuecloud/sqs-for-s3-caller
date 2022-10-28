@@ -1,7 +1,7 @@
 name: Reusable workflow
 
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
       STATEBUCKET:
         required: true
