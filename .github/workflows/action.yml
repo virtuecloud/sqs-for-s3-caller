@@ -4,11 +4,18 @@ on:
   workflow_call:
     inputs:
       STATEBUCKET:
-        required: true  
+        required: true
       ENVIRONMENT:
-         required: true
+        required: true
       REGION:
-         required: true
+        required: true
+    # inputs:
+    #   STATEBUCKET:
+    #     required: true  
+    #   ENVIRONMENT:
+    #      required: true
+    #   REGION:
+    #      required: true
 jobs:
   build-test-scan:
     runs-on: ubuntu-20.04
