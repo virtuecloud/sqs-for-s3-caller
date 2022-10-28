@@ -4,18 +4,4 @@ on:
   workflow_dispatch:
 jobs:
   build-test-scan:
-<<<<<<< HEAD
         uses: MrGandhe/github-shared/.github/workflows/action.yml@main
-=======
-    runs-on: ubuntu-20.04
-    
-  call-workflow-passing-data:
-    uses: MrGandhe/github-shared/.github/workflows/action.yml@main
-    with:
-      aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      STATEBUCKET : ${{ inputs.STATEBUCKET }}
-      REGION : ${{ inputs.REGION }}
-      ENVIRONMENT : ${{ inputs.ENVIRONMENT }}
-
->>>>>>> dbeec2e5a4225fb93bbedea9acd6620e44fcd931
