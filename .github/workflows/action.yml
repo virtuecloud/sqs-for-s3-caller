@@ -8,3 +8,12 @@ jobs:
     steps:   
       - name: test
         uses: MrGandhe/github-shared/TF@main
+      - name : Approval
+        uses: trstringer/manual-approval@v1
+        with:
+            secret: ${{ github.TOKEN }}
+            approvers: sparshbaurasi
+            minimum-approvals: 1
+            issue-title: "Approval for action"
+      - name: Apply
+        uses: sparshbaurasi/github-terraform-apply-action/Terraformapply@main
