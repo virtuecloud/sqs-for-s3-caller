@@ -6,8 +6,8 @@ jobs:
   build-test-scan:
     runs-on: ubuntu-20.04
     steps:   
-      - name: test
-        uses: MrGandhe/github-shared/TF@main
+      - name: Plan
+        uses: sparshbaurasi/github-shared-cp/TF@main
       - name : Approval
         uses: trstringer/manual-approval@v1
         with:
