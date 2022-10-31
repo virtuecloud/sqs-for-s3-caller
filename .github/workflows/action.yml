@@ -23,5 +23,5 @@ jobs:
 #             approvers: sparshbaurasi
 #             minimum-approvals: 1
 #             issue-title: "Approval for action"
-      - name: Apply
-        uses: sparshbaurasi/github-terraform-apply-action/Terraformapply@main
+#       - name: Apply
+#         uses: sparshbaurasi/github-terraform-apply-action/Terraformapply@main
