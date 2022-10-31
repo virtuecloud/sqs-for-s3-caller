@@ -12,6 +12,7 @@ jobs:
         run : |
                pwd
                ls
+               cat variable.tf
       - name: Plan
         uses: sparshbaurasi/github-shared-cp/TF@main
 #       - name : Approval
