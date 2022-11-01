@@ -8,7 +8,7 @@ on:
         description: 'Root directory for the root terraform configuration'
         required: true
         options: 
-        - sqs-s3-event
+        - s3-sqs-event
         - s3-bucket
 jobs:
   build-test-scan:
