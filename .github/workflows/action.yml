@@ -2,6 +2,14 @@ name: Reusable workflow
 
 on:
   workflow_dispatch:
+    inputs:
+      working-directory:
+        type: choice
+        description: 'Root directory for the root terraform configuration'
+        required: true
+        options: 
+        - sqs-s3-event
+        - s3-bucket
 jobs:
   build-test-scan:
     runs-on: ubuntu-20.04
