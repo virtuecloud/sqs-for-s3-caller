@@ -3,7 +3,7 @@ name: Reusable workflow
 on:
   workflow_dispatch:
     inputs:
-      working-directory:
+      DIRECTORYNAME:
         type: choice
         description: 'Root directory for the root terraform configuration'
         required: true
@@ -24,6 +24,8 @@ jobs:
           aws-region: ap-south-1
       - name: Plan
         uses: sparshbaurasi/github-shared-cp/TF@main
+        with:
+             DIRECTORY: ${{github.event.inputs.DIRECTORYNAME}}
 #       - name : Approval
 #         uses: trstringer/manual-approval@v1
 #         with:
