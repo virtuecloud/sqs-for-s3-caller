@@ -1,39 +1,24 @@
 name: Reusable workflow
 
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
       BUCKET_NAME:
-        type: choice
-        description: 'bucket name'
+        type: string
         required: true
-        options: 
-        - tf-state-bucket1
       REGION_NAME:
-        type: choice
-        description: 'region'
+        type: string
         required: true
-        options: 
-        - ap-south-1
       ENVIRONMENT_NAME:
-        type: choice
-        description: 'region'
+        type: string
         required: true
-        options: 
-        - test
-        - prod
-        - dev
       DIRECTORY_NAME:
-        type: choice
-        description: 'Root directory'
+        type: string
         required: true
-        options: 
-        - s3-sqs-event
-        - s3-bucket
     secrets:
       AWS_ACCESS_KEY:
         required: true
-      AWS__SECRET_ACCESS_KEY:
+      AWS_SECRET_ACCESS_KEY:
         required: true
 jobs:
   build-test-scan:
@@ -44,7 +29,7 @@ jobs:
       - name: Configure AWS Creds
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY}}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-south-1
       - name: Plan
