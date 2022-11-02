@@ -15,15 +15,22 @@ on:
       DIRECTORY_NAME:
         type: string
         required: true
+      TERRAFORMCOMMAND:
+        type: string
+        required: true
     secrets:
       AWS_ACCESS_KEY:
         required: true
       AWS_SECRET_ACCESS_KEY:
         required: true
 jobs:
-  build-test-scan:
+  Plan-Apply:
     runs-on: ubuntu-20.04
-    steps:   
+    steps: 
+      - name: Terraform Setup
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.3.0
       - name: Checkout
         uses: actions/checkout@v3
       - name: Configure AWS Creds
@@ -33,7 +40,8 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-south-1
       - name: Plan
-        uses: sparshbaurasi/github-shared-cp/TF@main
+        if: ${{ inputs.TERRAFORMCOMMAND == 'Plan' || inputs.TERRAFORMCOMMAND == 'Plan-Apply' }}
+        uses: sparshbaurasi/github-shared-cp/TerraformPlan@main
         with:
              STATE_BUCKET: ${{github.event.inputs.BUCKET_NAME}}
              REGION: ${{github.event.inputs.REGION_NAME}}
@@ -47,7 +55,7 @@ jobs:
 #             minimum-approvals: 1
 #             issue-title: "Approval for action"
       - name: Apply
-        uses: sparshbaurasi/github-terraform-apply-action/Terraformapply@main
+        uses: sparshbaurasi/github-shared-cp/TerraformApply@main
         with:
              STATE_BUCKET: ${{github.event.inputs.BUCKET_NAME}}
              REGION: ${{github.event.inputs.REGION_NAME}}
