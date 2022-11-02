@@ -49,7 +49,7 @@ jobs:
           aws-region: ap-south-1
       - name: checker
         run : |
-              @echo ${{secrets}}
+              @echo ${{github.event.secrets.AWS_ACCESS_KEY}}
       # - name: Plan
       #   uses: sparshbaurasi/github-shared-cp/TF@main
       #   with:
