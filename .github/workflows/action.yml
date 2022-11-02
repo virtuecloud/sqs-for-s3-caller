@@ -3,19 +3,19 @@ name: Reusable workflow
 on:
   workflow_dispatch:
     inputs:
-      BUCKETNAME:
+      BUCKET_NAME:
         type: choice
         description: 'bucket name'
         required: true
         options: 
         - tf-state-bucket1
-      REGIONNAME:
+      REGION_NAME:
         type: choice
         description: 'region'
         required: true
         options: 
         - ap-south-1
-      ENVIRONMENTNAME:
+      ENVIRONMENT_NAME:
         type: choice
         description: 'region'
         required: true
@@ -23,7 +23,7 @@ on:
         - test
         - prod
         - dev
-      DIRECTORYNAME:
+      DIRECTORY_NAME:
         type: choice
         description: 'Root directory'
         required: true
@@ -45,9 +45,9 @@ jobs:
       - name: Plan
         uses: sparshbaurasi/github-shared-cp/TF@main
         with:
-             STATEBUCKET: ${{github.event.inputs.BUCKETNAME}}
-             REGION: ${{github.event.inputs.REGIONNAME}}
-             DIRECTORY: ${{github.event.inputs.DIRECTORYNAME}}
+             STATE_BUCKET: ${{github.event.inputs.BUCKET_NAME}}
+             REGION: ${{github.event.inputs.REGION_NAME}}
+             DIRECTORY: ${{github.event.inputs.DIRECTORY_NAME}}
 #       - name : Approval
 #         uses: trstringer/manual-approval@v1
 #         with:
@@ -58,6 +58,6 @@ jobs:
       - name: Apply
         uses: sparshbaurasi/github-terraform-apply-action/Terraformapply@main
         with:
-             STATEBUCKET: ${{github.event.inputs.BUCKETNAME}}
-             REGION: ${{github.event.inputs.REGIONNAME}}
-             DIRECTORY: ${{github.event.inputs.DIRECTORYNAME}}
+             STATE_BUCKET: ${{github.event.inputs.BUCKET_NAME}}
+             REGION: ${{github.event.inputs.REGION_NAME}}
+             DIRECTORY: ${{github.event.inputs.DIRECTORY_NAME}}
