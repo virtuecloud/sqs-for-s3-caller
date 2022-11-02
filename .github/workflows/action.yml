@@ -30,6 +30,11 @@ on:
         options: 
         - s3-sqs-event
         - s3-bucket
+    secrets:
+      AWS_ACCESS_KEY:
+        required: true
+      AWS__SECRET_ACCESS_KEY:
+        required: true
 jobs:
   build-test-scan:
     runs-on: ubuntu-20.04
