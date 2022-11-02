@@ -48,6 +48,7 @@ jobs:
              STATE_BUCKET: ${{github.event.inputs.BUCKET_NAME}}
              REGION: ${{github.event.inputs.REGION_NAME}}
              DIRECTORY: ${{github.event.inputs.DIRECTORY_NAME}}
+             ENVIRONMENT: ${{github.event.inputs.ENVIRONMENT_NAME}}
 #       - name : Approval
 #         uses: trstringer/manual-approval@v1
 #         with:
@@ -61,3 +62,4 @@ jobs:
              STATE_BUCKET: ${{github.event.inputs.BUCKET_NAME}}
              REGION: ${{github.event.inputs.REGION_NAME}}
              DIRECTORY: ${{github.event.inputs.DIRECTORY_NAME}}
+             ENVIRONMENT: ${{github.event.inputs.ENVIRONMENT_NAME}}
