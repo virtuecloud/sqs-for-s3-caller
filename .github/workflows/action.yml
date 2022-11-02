@@ -3,9 +3,29 @@ name: Reusable workflow
 on:
   workflow_dispatch:
     inputs:
+      BUCKETNAME:
+        type: choice
+        description: 'bucket name'
+        required: true
+        options: 
+        - tf-state-bucket1
+      REGIONNAME:
+        type: choice
+        description: 'region'
+        required: true
+        options: 
+        - ap-south-1
+      ENVIRONMENTNAME:
+        type: choice
+        description: 'region'
+        required: true
+        options: 
+        - test
+        - prod
+        - dev
       DIRECTORYNAME:
         type: choice
-        description: 'Root directory for the root terraform configuration'
+        description: 'Root directory'
         required: true
         options: 
         - s3-sqs-event
@@ -25,6 +45,8 @@ jobs:
       - name: Plan
         uses: sparshbaurasi/github-shared-cp/TF@main
         with:
+             STATEBUCKET: ${{github.event.inputs.BUCKETNAME}}
+             REGION: ${{github.event.inputs.REGIONNAME}}
              DIRECTORY: ${{github.event.inputs.DIRECTORYNAME}}
 #       - name : Approval
 #         uses: trstringer/manual-approval@v1
@@ -35,3 +57,7 @@ jobs:
 #             issue-title: "Approval for action"
       - name: Apply
         uses: sparshbaurasi/github-terraform-apply-action/Terraformapply@main
+        with:
+             STATEBUCKET: ${{github.event.inputs.BUCKETNAME}}
+             REGION: ${{github.event.inputs.REGIONNAME}}
+             DIRECTORY: ${{github.event.inputs.DIRECTORYNAME}}
