@@ -15,7 +15,7 @@ on:
       DIRECTORY_NAME:
         type: string
         required: true
-      TERRAFORMCOMMAND:
+      TERRAFORM_COMMAND:
         type: string
         required: true
     secrets:
@@ -40,7 +40,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-south-1
       - name: Plan
-        if: ${{ github.event.inputs.TERRAFORMCOMMAND == 'Plan' || github.event.inputs.TERRAFORMCOMMAND == 'Apply' }}
+        if: ${{ github.event.inputs.TERRAFORM_COMMAND == 'Plan' || github.event.inputs.TERRAFORM_COMMAND == 'Apply' }}
         uses: sparshbaurasi/github-shared-cp/TerraformPlan@main
         with:
              STATE_BUCKET: ${{github.event.inputs.BUCKET_NAME}}
@@ -55,7 +55,7 @@ jobs:
 #             minimum-approvals: 1
 #             issue-title: "Approval for action"
       - name: Apply
-        if: ${{ github.event.inputs.TERRAFORMCOMMAND == 'Apply' }}
+        if: ${{ github.event.inputs.TERRAFORM_COMMAND == 'Apply' }}
         uses: sparshbaurasi/github-shared-cp/TerraformApply@main
         with:
              STATE_BUCKET: ${{github.event.inputs.BUCKET_NAME}}
