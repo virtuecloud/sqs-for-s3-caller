@@ -40,7 +40,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-south-1
       - name: Plan
-        if: ${{ github.event.inputs.TERRAFORM_COMMAND == 'Plan' || github.event.inputs.TERRAFORM_COMMAND == 'Plan-Apply' }}
+        if: ${{ github.event.inputs.TERRAFORM_COMMAND == 'Plan' || github.event.inputs.TERRAFORM_COMMAND == 'Plan-Apply' || github.event.inputs.TERRAFORM_COMMAND == 'Plan-Destroy' }}
         uses: sparshbaurasi/github-shared-cp/TerraformPlan@main
         with:
              STATE_BUCKET: ${{github.event.inputs.BUCKET_NAME}}
