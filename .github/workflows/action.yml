@@ -55,6 +55,7 @@ jobs:
 #             minimum-approvals: 1
 #             issue-title: "Approval for action"
       - name: Apply
+        if: ${{ inputs.TERRAFORMCOMMAND == 'Plan-Apply' }}
         uses: sparshbaurasi/github-shared-cp/TerraformApply@main
         with:
              STATE_BUCKET: ${{github.event.inputs.BUCKET_NAME}}
