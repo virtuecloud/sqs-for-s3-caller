@@ -6,6 +6,9 @@ on:
       BUCKET_NAME:
         type: string
         required: true
+      KEY_NAME:
+        type: string
+        required: true
       REGION_NAME:
         type: string
         required: true
@@ -44,6 +47,7 @@ jobs:
         uses: sparshbaurasi/github-shared-cp/TerraformPlan@main
         with:
              STATE_BUCKET: ${{github.event.inputs.BUCKET_NAME}}
+             STATE_KEY: ${{github.event.inputs.KEY_NAME}}
              REGION: ${{github.event.inputs.REGION_NAME}}
              DIRECTORY: ${{github.event.inputs.DIRECTORY_NAME}}
              ENVIRONMENT: ${{github.event.inputs.ENVIRONMENT_NAME}}
@@ -59,6 +63,7 @@ jobs:
         uses: sparshbaurasi/github-shared-cp/TerraformApply@main
         with:
              STATE_BUCKET: ${{github.event.inputs.BUCKET_NAME}}
+             STATE_KEY: ${{github.event.inputs.KEY_NAME}}
              REGION: ${{github.event.inputs.REGION_NAME}}
              DIRECTORY: ${{github.event.inputs.DIRECTORY_NAME}}
              ENVIRONMENT: ${{github.event.inputs.ENVIRONMENT_NAME}}
