@@ -24,7 +24,7 @@ on:
       AWS_SECRET_ACCESS_KEY:
         required: true
 jobs:
-  Plan-Apply:
+  build-test:
     runs-on: ubuntu-20.04
     steps: 
       - name: Terraform Setup
