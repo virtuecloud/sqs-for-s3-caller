@@ -63,13 +63,14 @@ jobs:
              REGION: ${{github.event.inputs.REGION_NAME}}
              DIRECTORY: ${{github.event.inputs.DIRECTORY_NAME}}
              ENVIRONMENT: ${{github.event.inputs.ENVIRONMENT_NAME}}
-#       - name : Approval
-#         uses: trstringer/manual-approval@v1
-#         with:
-#             secret: ${{ github.TOKEN }}
-#             approvers: sparshbaurasi
-#             minimum-approvals: 1
-#             issue-title: "Approval for action"
+      - name : Approval
+        if: ${{ github.event.inputs.TERRAFORM_COMMAND == 'Plan-Apply' || github.event.inputs.TERRAFORM_COMMAND == 'Destroy' }}
+        uses: trstringer/manual-approval@v1
+        with:
+            secret: ${{ github.TOKEN }}
+            approvers: sparshbaurasi
+            minimum-approvals: 1
+            issue-title: "Approval for ${{ inputs.TERRAFORM_COMMAND }}"
       - name: Apply
         if: ${{ github.event.inputs.TERRAFORM_COMMAND == 'Plan-Apply'}}
         uses: sparshbaurasi/github-shared-cp/TerraformApply@main
