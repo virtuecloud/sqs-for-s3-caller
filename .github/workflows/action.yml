@@ -65,7 +65,7 @@ jobs:
              ENVIRONMENT: ${{github.event.inputs.ENVIRONMENT_NAME}}
       - name : Approval
         if: ${{ github.event.inputs.TERRAFORM_COMMAND == 'Apply' || github.event.inputs.TERRAFORM_COMMAND == 'Destroy' }}
-        uses: trstringer/manual-approval@v1
+        uses: sparshbaurasi/manual-approval@v1
         with:
             secret: ${{ github.TOKEN }}
             approvers: sparshbaurasi
