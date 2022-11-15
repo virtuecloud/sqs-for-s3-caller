@@ -1,38 +1,49 @@
-name: Reusable workflow
+# Terraform Reusable workflow
 
-on:
-  workflow_call:
-    inputs:
-      BUCKET_NAME:
-        type: string
-        required: true
-      KEY_NAME:
-        type: string
-        required: true
-      STATE_LOCK_TABLE_NAME:
-        type: string
-        required: true
-      REGION_NAME:
+This a Reusable workflow designed to carry out differnt command for terraform. In this workflow we have automated commands like 'init', 'plan', 'apply' etc. to simplify the creation and deletion of infrastucture and its resources. It is designed in a chronological order i.e. init->plan->apply or init->plan-delete.
+
+The way this workflow works is as following:
+
+1. First the workflow sets up the version terraform installed on the runner.
+1. Then by `actions/checkout@v3` action it clones the repository from source to the runner.
+1. Then by configuring the aws credentials by `aws-actions/configure-aws-credentials` action it proceeds to terraform init action.
+1. After these steps are completed workflow moves to the terraform composite actions in order of Init->Plan->'user input action'.
+1. The `Apply` action provisions the infrastructure from the code provided in the 2 step.
+1. The `Plan-destroy` action will display the resources that will be destroyed by the `destroy` command.
+
+## inputs
+
+```yaml
+
+inputs:
+      INFRASTRUCTURE_TO_BUILD:
         type: string
         required: true
       ENVIRONMENT_NAME:
         type: string
         required: true
-      DIRECTORY_NAME:
-        type: string
-        required: true
       TERRAFORM_COMMAND:
-        type: string
+        type:string
         required: true
-    secrets:
-      AWS_ACCESS_KEY:
-        required: true
-      AWS_SECRET_ACCESS_KEY:
-        required: true
-jobs:
-  build-test:
-    runs-on: ubuntu-20.04
-    steps: 
+
+```
+
+## secrets
+
+```yaml
+
+secrets:
+  AWS_ACCESS_KEY:
+    required: true
+  AWS_SECRET_ACCESS_KEY:
+    required: true
+
+```
+
+## Usage
+
+```yaml
+steps: 
       - name: Terraform Setup
         uses: hashicorp/setup-terraform@v2
         with:
@@ -76,4 +87,8 @@ jobs:
         if: ${{ github.event.inputs.TERRAFORM_COMMAND == 'Destroy' }}
         uses: sparshbaurasi/github-shared-cp/TerraformDestroy@main
         with:
-             DIRECTORY: ${{github.event.inputs.DIRECTORY_NAME}}             
+             DIRECTORY: ${{github.event.inputs.DIRECTORY_NAME}}        
+```
+
+## Limitations
+
