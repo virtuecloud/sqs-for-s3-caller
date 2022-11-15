@@ -3,18 +3,6 @@ name: Reusable workflow
 on:
   workflow_call:
     inputs:
-      BUCKET_NAME:
-        type: string
-        required: true
-      KEY_NAME:
-        type: string
-        required: true
-      STATE_LOCK_TABLE_NAME:
-        type: string
-        required: true
-      REGION_NAME:
-        type: string
-        required: true
       ENVIRONMENT_NAME:
         type: string
         required: true
