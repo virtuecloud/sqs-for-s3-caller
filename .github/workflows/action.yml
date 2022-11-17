@@ -12,11 +12,6 @@ on:
       TERRAFORM_COMMAND:
         type: string
         required: true
-    secrets:
-      AWS_ACCESS_KEY:
-        required: true
-      AWS_SECRET_ACCESS_KEY:
-        required: true
 permissions:
       id-token: write   # This is required for requesting the JWT
       contents: read    # This is required for actions/checkout
@@ -42,7 +37,7 @@ jobs:
              DIRECTORY: ${{github.event.inputs.DIRECTORY_NAME}}
              ENVIRONMENT: ${{github.event.inputs.ENVIRONMENT_NAME}}
       - name: Plan
-        if: ${{ github.event.inputs.TERRAFORM_COMMAND == 'Plan' }}
+        if: ${{ github.event.inputs.TERRAFORM_COMMAND == 'Apply' }}
         uses: sparshbaurasi/github-shared-cp/TerraformPlan@main
         with:
              DIRECTORY: ${{github.event.inputs.DIRECTORY_NAME}}
@@ -60,7 +55,7 @@ jobs:
         with:
              DIRECTORY: ${{github.event.inputs.DIRECTORY_NAME}}
       - name: Plan-destroy
-        if: ${{ github.event.inputs.TERRAFORM_COMMAND == 'Plan-Destroy' || github.event.inputs.TERRAFORM_COMMAND == 'Destroy' }}
+        if: ${{ github.event.inputs.TERRAFORM_COMMAND == 'Destroy' }}
         uses: sparshbaurasi/github-shared-cp/TerraformPlanDestroy@main
         with:
              DIRECTORY: ${{github.event.inputs.DIRECTORY_NAME}}
