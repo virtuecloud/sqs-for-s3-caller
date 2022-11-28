@@ -46,7 +46,7 @@ jobs:
         uses: sparshbaurasi/man-approv@main
         with:
             secret: ${{ github.TOKEN }}
-            approvers: sparshbaurasi
+            approvers: org-team
             minimum-approvals: 1
             issue-title: "Approval for ${{ inputs.TERRAFORM_COMMAND }}"
       - name: Apply
