@@ -37,12 +37,12 @@ jobs:
              DIRECTORY: ${{github.event.inputs.DIRECTORY_NAME}}
              ENVIRONMENT: ${{github.event.inputs.ENVIRONMENT_NAME}}
       - name: Plan
-        if: ${{ github.event.inputs.TERRAFORM_COMMAND == 'Apply' }}
+        if: ${{ github.event.inputs.TERRAFORM_COMMAND == 'Plan' }}
         uses: sparshbaurasi/github-shared-cp/TerraformPlan@main
         with:
              DIRECTORY: ${{github.event.inputs.DIRECTORY_NAME}}
       - name : Approval
-        if: ${{ github.event.inputs.TERRAFORM_COMMAND == 'Apply' || github.event.inputs.TERRAFORM_COMMAND == 'Destroy' }}
+        if: ${{ github.event.inputs.TERRAFORM_COMMAND == 'Plan' || github.event.inputs.TERRAFORM_COMMAND == 'Destroy' }}
         uses: sparshbaurasi/man-approv@main
         with:
             secret: ${{ github.TOKEN }}
